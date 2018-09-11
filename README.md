@@ -1,10 +1,12 @@
 # 济南大学图书馆座位预约系统API
 _UJN Library Seat API for Python_
 # 说明
+Python 版在 libapi 目录下
 最近重写了一下，之前一直没有好好维护，暂时移除了自定义功能，稍后发布
 
 ### 用例
 ``` Python
+>>> from leoapi import *
 >>> p = leoapi("账号", "密码")
 >>> res = p.reservations()
 >>> res
