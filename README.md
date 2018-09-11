@@ -5,7 +5,7 @@ _UJN Library Seat API for Python_
 
 ### 用例
 ``` Python
->>> p = leoapi()
+>>> p = leoapi("账号", "密码")
 >>> res = p.reservations()
 >>> res
 {'status': u'success', 'message': u'', 'code': u'0', 'data': [{'status': u'RESERVE', 'begin': u'12:00', 'end': u'16:00', 'awayEnd': None, 'receipt': u'2001-283-3', 'awayBegin': None, 'userEnded': False, 'id': 4565283, 'onDate': u'2018-09-12', 'actualBegin': None, 'location': u'\u897f\u6821\u533a2\u5c42213\u5ba4\u533a\u7b2c\u4e00\u9605\u89c8\u5ba4\uff0c\u5ea7\u4f4d\u53f7009', 'message': u'\u8bf7\u5728 09\u670812\u65e511\u70b915\u5206 \u81f3 12\u70b915\u5206 \u4e4b\u95f4\u524d\u5f80\u573a\u9986\u7b7e\u5230', 'seatId': 22803}]}
