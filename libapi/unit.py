@@ -19,28 +19,17 @@ class ParseJsonException(BaseException):
 
 
 class JsonDict(dict):
-    """general json object that allows attributes to be bound to and also behaves like a dict"""
+    def __init__(self, *args, **kwargs):
+        super(JsonDict, self).__init__(*args, **kwargs)
+        self.__dict__ = self
 
-    def __getattr__(self, attr):
-        try:
-            return self[attr]
-        except KeyError:
-            raise AttributeError(r"'JsonDict' object has no attribute '%s'" % attr)
-
-    def __setattr__(self, attr, value):
-        self[attr] = value
+    def __str__(self):
+        return json.dumps(self, encoding="utf-8", ensure_ascii=False, indent=2).encode('utf-8')
 
 
 def parse_json(json_str):
     """parse str into JsonDict"""
-
-    def _obj_hook(pairs):
-        """convert json object to python object"""
-        o = JsonDict()
-        for k, v in pairs.items():
-            o[str(k)] = v
-        return o
     try:
-        return json.loads(json_str, object_hook=_obj_hook)
+        return json.loads(json_str, object_hook=JsonDict)
     except:
         raise ParseJsonException(json_str)
