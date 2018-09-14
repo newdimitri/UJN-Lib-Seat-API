@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from unit import LoginException, parse_json
+from utils import LoginException, parse_json
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

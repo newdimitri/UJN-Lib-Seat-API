@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+import sys
 import json
 
 class LoginException(BaseException):
@@ -24,7 +25,11 @@ class JsonDict(dict):
         self.__dict__ = self
 
     def __str__(self):
-        return json.dumps(self, encoding="utf-8", ensure_ascii=False, indent=2).encode('utf-8')
+        s = json.dumps(self, ensure_ascii=False, indent=2)
+        # Python 2 3 兼容
+        if sys.version_info.major < 3:
+            s = s.encode('utf-8')
+        return s
 
 
 def parse_json(json_str):
