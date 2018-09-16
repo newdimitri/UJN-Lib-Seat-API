@@ -5,8 +5,8 @@ import json
 import random
 import requests
 
-from leoapi import leoapi
-from utils import JsonDict
+from .leoapi import leoapi
+from .utils import JsonDict
 
 
 class libapi(leoapi):

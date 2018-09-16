@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from utils import LoginException, parse_json
+from .utils import LoginException, parse_json
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -13,17 +13,17 @@ class leoapi(object):
         l = len(account)
         self.base_url = 'https://seat.ujn.edu.cn:8443'
         self.api = {
-            'token': '/rest/auth?username={}&password={}',
+            'token': '/rest/auth?username={username}&password={password}',
             'user': '/rest/v2/user',
             'filters': '/rest/v2/free/filters',
             'checkIn': '/rest/v2/checkIn',
             'reservations': '/rest/v2/user/reservations',
-            'roomStats': '/rest/v2/room/stats2/{}',
-            'layoutByDate': '/rest/v2/room/layoutByDate/{}/{}/',
-            'seatStartTime': '/rest/v2/startTimesForSeat/{}/{}',
-            'seatEndTime': '/rest/v2/endTimesForSeat/{}/{}/{}',
-            'history': '/rest/v2/history/{}/{}',
-            'cancelRes': '/rest/v2/cancel/{}',
+            'roomStats': '/rest/v2/room/stats2/{building}',
+            'layoutByDate': '/rest/v2/room/layoutByDate/{room}/{date}/',
+            'seatStartTime': '/rest/v2/startTimesForSeat/{id}/{date}',
+            'seatEndTime': '/rest/v2/endTimesForSeat/{id}/{date}/{start}',
+            'history': '/rest/v2/history/{page}/{count}',
+            'cancelRes': '/rest/v2/cancel/{id}',
             'freeBook': '/rest/v2/freeBook'
         }
         for i in self.api:
@@ -65,7 +65,7 @@ class leoapi(object):
 
     def getToken(self):
         # 获取token
-        r = self.requests_call("GET", self.api['token'].format(self.ac, self.pw))
+        r = self.requests_call("GET", self.api['token'].format(username=self.ac, password=self.pw))
         return parse_json(r.text)
 
     def reservations(self):
@@ -86,18 +86,18 @@ class leoapi(object):
 
     def roomStats(self, building_id):
         # 获取楼层信息
-        r = self.requests("GET", self.api['roomStats'].format(building_id))
+        r = self.requests("GET", self.api['roomStats'].format(building=building_id))
         return parse_json(r.text)
 
     def seatStartTime(self, seat_id, date):
         # 可开始时间
-        url = self.api['seatStartTime'].format(seat_id, date)
+        url = self.api['seatStartTime'].format(id=seat_id, date=date)
         r = self.requests('GET', url)
         return parse_json(r.text)
 
     def seatEndTime(self, seat_id, date, start_time):
         # 结束时间
-        url = self.api['seatEndTime'].format(seat_id, date, start_time)
+        url = self.api['seatEndTime'].format(id=seat_id, date=date, start=start_time)
         r = self.requests('GET', url)
         return parse_json(r.text)
 
@@ -116,7 +116,7 @@ class leoapi(object):
         return parse_json(r.text)
 
     def layoutByDate(self, room_id, date):
-        url = self.api['layoutByDate'].format(room_id, date)
+        url = self.api['layoutByDate'].format(room=room_id, date=date)
         r = self.requests('GET', url)
         return parse_json(r.text)
 
@@ -128,12 +128,12 @@ class leoapi(object):
     def history(self, page=1, count=10):
         # 获取预约历史
         # 1是页数从1开始 10为每页显示个数
-        url = self.api['history'].format(page, count)
+        url = self.api['history'].format(page=page, count=count)
         r = self.requests('GET', url)
         return parse_json(r.text)
 
     def cancelRes(self, res_id):
-        r = self.requests('GET', self.api['cancelRes'].format(res_id))
+        r = self.requests('GET', self.api['cancelRes'].format(id=res_id))
         return parse_json(r.text)
 
 
