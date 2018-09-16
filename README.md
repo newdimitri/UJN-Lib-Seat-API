@@ -9,8 +9,8 @@ Python 版在 libapi 目录下
 
 ### 用例
 ``` Python
-cd path/UJN-Lib-Seat-API
-python3
+$ cd path-to-UJN-Lib-Seat-API
+$ python3
 Python 3.7.0 (default, Jul 15 2018, 10:44:58) 
 [GCC 8.1.1 20180531] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -102,10 +102,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> p.seatStartTime(1234, "2018-08-08")
 {'status': 'success', 'data': {'startTimes': [{'id': '1140', 'value': '19:00'}, {'id': '1200', 'value': '20:00'}, {'id': '1260', 'value': '21:00'}]}, 'message': '', 'code': '0'}
 ```
-详细解释一下，Seat id 为每个座位对应的 ID 编号，如果你不知道座位 ID 为多少，可以通过 [getSeatIDbyNum](###getSeatIDbyNumroomid-seatnum) 来获取。Room id 则为filters().data.rooms[n][0] ，你也可以通过 [getRoomIDbyName](###getRoomIDbyNameroomname) 来获取Room ID。另外参数 date 以 filters() 方法返回的 dates 数据为准。
+详细解释一下，Seat id 为每个座位对应的 ID 编号，如果你不知道座位 ID 为多少，可以通过 getSeatIDbyNum 来获取。Room id 则为filters().data.rooms[n][0] ，你也可以通过 getRoomIDbyName 来获取Room ID。另外参数 date 以 filters() 方法返回的 dates 数据为准。
 
 ### freeBook(start_time, end_time, seat_id, date)
-start_time, end_time 为开始结束时间，可以是整数、小数（7点就填7），也可以是[seatStartTime](###seatStartTimeseatid-date)返回的data.startTimes[n].id，但预约总时常不能超过 [roomStats](roomStatsbuilding_id) 中返回的 maxHour 。返回结果自行分析。你也可以使用 [book](###bookstarttime-endtime-roomid-seatnum-date) 来进行预约
+start_time, end_time 为开始结束时间，可以是整数、小数（7点就填7），也可以是 seatStartTime 返回的 data.startTimes[n].id，但预约总时常不能超过 roomStats 中返回的 maxHour 。返回结果自行分析。你也可以使用 book 方法来进行预约
 
 ``` Python
 >>> p.freeBook(7, 20, 1234, "2018-08-08")
