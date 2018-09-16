@@ -101,9 +101,10 @@ class leoapi(object):
         r = self.requests('GET', url)
         return parse_json(r.text)
 
-    def freeBook(self, start_time, end_time, seat_id, date, multiply = True):
+    def freeBook(self, start_time, end_time, seat_id, date):
         # 预约座位
-        if multiply:
+
+        if float(start_time) <= 24:
             start = float(start_time) * 60
             end = float(end_time) * 60
         post_data = {
