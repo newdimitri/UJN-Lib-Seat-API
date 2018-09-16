@@ -54,11 +54,11 @@ class libapi(leoapi):
             if seat.name == seat_num:
                 return seat.id
     
-    def getBuidingNamebyID(self, building_id):
-        buildings = self.filters().data.buildings
-        for building in buildings:
-            if int(building[0]) == int(building_id):
-                return building[1]
+    def getRoomIDbyName(self, room_name):
+        rooms = self.filters().data.rooms
+        for room in rooms:
+            if room[1] == room_name:
+                return room[0]
     
     def getRoomNamebyID(self, room_id):
         rooms = self.filters().data.rooms
