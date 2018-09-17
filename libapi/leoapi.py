@@ -29,8 +29,7 @@ class leoapi(object):
         for i in self.api:
             self.api[i] = self.base_url + self.api[i]
         if l == 0:
-            self.ac = '220141222001'
-            self.pw = '100325'
+            pass
         elif l == 1:
             self.ac = self.pw = account[0]
         else:
