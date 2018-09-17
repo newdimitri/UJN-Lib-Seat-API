@@ -12,6 +12,8 @@ Python 版在 libapi 目录下
 # 卧槽你他妈的用来挣钱是不是有点过分呢？
 # 不是我哦铁汁们┗|｀O′|┛ 
 
+# 想抢座位的戳[这里](https://github.com/iozephyr/UJN-Lib-Seat-API/issues/9)
+
 
 ### 用例
 ``` Python
