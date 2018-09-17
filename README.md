@@ -2,13 +2,17 @@
 _UJN Library Seat API for Python_
 # 说明
 Python 版在 libapi 目录下
+
 支持 Python 2 3 蛋疼的编码问题建议 Python 3
 
 本人未参与任何金钱(PY)交易，项目仅供学习交流使用
+
 这是个还不错的 `Python` `爬虫` `HTTP` `RESTful`（RESTful 其实也不正规） **学习**项目
 
 我觉得你们还需要学习一个
+
 本身专业是计算机的你们要是想占座可以开 issue 我教你们，但要是一点代码也不懂还是算了
+
 收钱帮别人抢座太无耻了吧
 
 ### 想抢座位的戳[这里](https://github.com/iozephyr/UJN-Lib-Seat-API/issues/9)
