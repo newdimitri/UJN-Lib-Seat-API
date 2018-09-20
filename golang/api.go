@@ -305,11 +305,12 @@ func (u *User) SeatEndTime(seatID int, date, startTime string) ([]byte, error) {
 */
 func (u *User) FreeBook(seatID int, startTime, endTime, date string) ([]byte, error) {
 	data := url.Values{}
-	data.Set("t", "1")
+	// data.Set("t", "1")
 	data.Set("startTime", startTime)
 	data.Set("endTime", endTime)
 	data.Set("seat", strconv.Itoa(seatID))
-	data.Set("t2", "2")
+	data.Set("date", date)
+	// data.Set("t2", "2")
 	body, err := u.request("POST", FREEBOOK_URL, data)
 	if err != nil {
 		return nil, err
